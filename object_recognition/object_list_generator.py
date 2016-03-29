@@ -14,9 +14,13 @@ for image_path  in images_paths:
     category = elements[1]
     name2category[name] = (category, image_path)
 
-name2category = OrderedDict(sorted(name2category.iteritems(), key=lambda x: x[1]))
+name2category = OrderedDict(sorted(name2category.iteritems(), key=lambda x: x[0]))
 
 print """<html>
+    <style type="text/css">
+        table, th, td { border: 1px solid black; border-collapse: collapse; }
+
+    </style>
     <body>
         <table>"""
 
@@ -26,7 +30,7 @@ for number, (name, (category, path)) in enumerate(name2category.iteritems()):
         <td>{num}</td>
         <td>{image}</td>
         <td>{name} ({category})</td>
-    </tr>""".format(num=number, image=image_str, name=name, category=category)
+    </tr>""".format(num=number+1, image=image_str, name=name, category=category)
 
 print """       </table>
     </body>
