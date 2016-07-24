@@ -1,0 +1,22 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[latin1]{inputenc} 
+\usepackage[pdftex]{hyperref}
+% from https://tex.stackexchange.com/a/14845 
+\newdimen\longline
+\longline=\textwidth\advance\longline-4cm
+
+\def\LayoutTextField#1#2{#2} % override default in hyperref
+
+\def\lbl#1{\hbox to 4cm{#1\dotfill\strut}}%
+\def\labelline#1#2{\lbl{#1}\vbox{\hbox{\TextField[name=#1,width=#2]{\null}}\kern2pt\hrule}}
+
+\def\q#1{\hbox to \hsize{\labelline{#1}{\longline}}\vskip1.4ex}
+
+\begin{document}
+  \begin{Form}[action={http://127.0.0.1:5000/submit/}]
+    \q{First Name}
+    \q{Last Name}
+    \q{Performing the task: Category II}
+    \Submit{Submit}
+   \end{Form}
+ \end{document}
