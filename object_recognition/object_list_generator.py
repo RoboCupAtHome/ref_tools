@@ -10,8 +10,11 @@ name2category = OrderedDict()
 
 for image_path  in images_paths:
     elements = os.path.splitext(image_path)[0].split(' - ')
-    name = elements[0]
-    category = elements[1]
+    try:
+        name = elements[0]
+        category = elements[1]
+    except Exception as e:
+        print("Cannot get name/categry from '{}'".format(image_path))
     name2category[name] = (category, image_path)
 
 name2category = OrderedDict(sorted(name2category.iteritems(), key=lambda x: x[0]))
